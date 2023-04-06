@@ -36,7 +36,7 @@
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-            @include('admin.layouts.content')
+            @yield('content')
         </div>
         <!-- /.content-wrapper -->
         @include('admin.layouts.footer')

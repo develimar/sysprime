@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Ti\AdminTiEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/admin',[\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.index');
+
+Route::get('/admin/ti/email/create', [AdminTiEmailController::class, 'create'])->name('admin.ti.email.create');
