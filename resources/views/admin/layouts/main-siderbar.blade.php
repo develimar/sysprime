@@ -54,6 +54,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{}}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Gestão de Sistemas
+                        </p>
+                    </a>
+                </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a href="pages/gallery.html" class="nav-link">--}}
 {{--                        <i class="nav-icon far fa-image"></i>--}}
