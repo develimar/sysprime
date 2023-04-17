@@ -38,7 +38,7 @@
                 <li class="nav-header">TI</li>
                 @yield('menu')
                 <li class="nav-item">
-                    <a href="{{route('admin.ti.email.create')}}" class="nav-link">
+                    <a href="{{route('admin.ti.email.index')}}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Email
