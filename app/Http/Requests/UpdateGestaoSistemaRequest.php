@@ -11,7 +11,7 @@ class UpdateGestaoSistemaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateGestaoSistemaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'descricao' => 'required|min:3|max:90|string',
+            'link' => 'required|string|max:90|min:3',
+            'usuario' => 'required|string|max:90|min:3',
+            'senha' => 'required|string|max:50|min:3'
         ];
     }
 }

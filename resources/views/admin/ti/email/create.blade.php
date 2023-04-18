@@ -24,18 +24,6 @@
     <!-- Main content -->
     <section class="content">
 
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <form action="{{ route('admin.ti.email.store') }}" method="post">
             @csrf
             <div class="container-fluid">
