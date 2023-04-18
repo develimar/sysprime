@@ -34,3 +34,5 @@ Route::get('/admin/ti/gestao_sistemas/create',[GestaoSistemaController::class, '
 Route::post('/admin/ti/gestao_sistemas/store',[GestaoSistemaController::class, 'store'])->name('admin.sistemas.store');
 Route::get('/admin/ti/gestao_sistemas/{id}/edit',[GestaoSistemaController::class, 'edit'])->name('admin.ti.sistemas.edit');
 Route::put('/admin/ti/gestao_sistemas/{id}',[GestaoSistemaController::class, 'update'])->name('admin.ti.sistemas.update');
+Route::delete('/admin/ti/gestao_sistemas/{id}', [GestaoSistemaController::class, 'destroy'])->name('admin.ti.sistema.destroy');
+Route::get('/admin/ti/gestao_sistemas/{id}', [GestaoSistemaController::class, 'show'])->name('admin.ti.sistema.show');

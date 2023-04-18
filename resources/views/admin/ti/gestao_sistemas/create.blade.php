@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    <form id="quickForm" action="" method="post">
+    <form id="quickForm" action="{{route('admin.sistemas.store')}}" method="post">
         @csrf
         <div class="container-fluid">
             <!-- left column -->

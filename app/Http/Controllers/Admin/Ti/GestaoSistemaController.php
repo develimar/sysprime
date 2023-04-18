@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class GestaoSistemaController extends Controller
 {
+    protected $model;
+
+    public function __construct(GestaoSistema $gestao)
+    {
+        $this->model = $gestao;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -48,15 +54,19 @@ class GestaoSistemaController extends Controller
             'senha'
         ]);
         GestaoSistema::create($data);
-        return redirect()->route('admin.sistemas.index');
+        return redirect()->route('admin.ti.sistemas.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(GestaoSistema $gestaoSistema)
+    public function show($gestaoSistema)
     {
-        //
+        if (!$data = $this->model->find($gestaoSistema)){
+            return redirect()->route('admin.ti.sistemas.index');
+        }
+        //return view('admin.ti.gestao_sistemas.show', compact('data'));
+        return view('admin.ti.gestao_sistemas.show', compact('data'));
     }
 
     /**
@@ -64,9 +74,13 @@ class GestaoSistemaController extends Controller
      */
     public function edit($gestaoSistema)
     {
-        $data = GestaoSistema::find($gestaoSistema);
-        return view('admin.ti.gestao_sistemas.edit')->with('data',$data);
+        //$data = GestaoSistema::find($gestaoSistema);
+        //return view('admin.ti.gestao_sistemas.edit')->with('data',$data);
         //return view('admin.ti.sistemas.edit')->with('data',$data);
+        if (!$data = $this->model->find($gestaoSistema)){
+            return redirect()->route('admin.ti.sistemas.index');
+        }
+        return view('admin.ti.gestao_sistemas.edit', compact('data'));
     }
 
     /**
@@ -74,15 +88,23 @@ class GestaoSistemaController extends Controller
      */
     public function update(UpdateGestaoSistemaRequest $request, $gestaoSistema)
     {
-        $atual = GestaoSistema::find($gestaoSistema);
-        dd($atual);
+        if (!$gestao = $this->model->find($gestaoSistema) ){
+            return redirect()->route('admin.ti.sistemas.index');
+        }
+        $data = $request->all();
+        $gestao->update($data);
+        return redirect()->route('admin.ti.sistemas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GestaoSistema $gestaoSistema)
+    public function destroy($gestaoSistema)
     {
-        //
+        if (!$gestao = $this->model->find($gestaoSistema) ){
+            return redirect()->route('admin.ti.sistemas.index');
+        }
+        $gestao->delete();
+        return redirect()->route('admin.ti.sistemas.index');
     }
 }

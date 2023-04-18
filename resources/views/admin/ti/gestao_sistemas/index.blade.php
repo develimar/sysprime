@@ -51,9 +51,14 @@
                                             <td>{{$data->usuario}}</td>
                                             <td>{{$data->senha}}</td>
                                             <td>
-                                                <a href="" class="btn btn-outline-success btn-sm">Detalhe</a>
+                                                <a href="{{route('admin.ti.sistema.show', $data->id)}}" class="btn btn-outline-success btn-sm">Detalhe</a>
                                                 <a href="{{route('admin.ti.sistemas.edit', $data->id)}}" class="btn btn-outline-primary btn-sm">Editar</a>
-                                                <a href="" class="btn btn-outline-danger btn-sm">Excluir</a>
+                                                <form action="{{route('admin.ti.sistema.destroy', $data->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                     @endforeach
