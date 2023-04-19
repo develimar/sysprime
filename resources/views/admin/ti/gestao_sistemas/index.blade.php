@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="col-2 pb-3">
-                            <a href="{{route('admin.ti.sistemas.create')}}" class="btn btn-block btn-outline-primary">Novo</a>
+                            <a href="#" data-toggle="modal" data-target="#modal-cadastro-gestao" class="btn btn-block btn-outline-primary">Novo Modal</a>
                         </div>
                         <div class="card">
                             <!-- /.card-header -->
@@ -87,36 +87,65 @@
                                                     <form action="{{route('admin.ti.sistema.destroy', $data->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="#" data-toggle="modal" data-target="#modal-default" class="btn btn-outline-success btn-sm">Detalhe</a>
+                                                        <a href="#" data-toggle="modal" data-target="#modal-detalhes-gestao" class="btn btn-outline-success btn-sm">Detalhe</a>
                                                         <a href="{{route('admin.ti.sistemas.edit', $data->id)}}" class="btn btn-outline-primary btn-sm">Editar</a>
                                                         <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
                                                     </form>
 
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="modal-default">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">{{$data->descricao}}</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Descricao: {{$data->descricao}}</p>
-                                                            <p>Link: {{$data->link}}</p>
-                                                            <p>Usuario: {{$data->usuario}}</p>
-                                                            <p>Senha: {{$data->senha}}</p>
-                                                        </div>
-                                                        <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         @endforeach
                                     @endif
+
+{{--                                    @include('admin.ti.gestao_sistemas._parts.modals.detalhes')--}}
+
+                                    {{--Modal Cadastro Gestão--}}
+                                    <div class="modal fade" id="modal-cadastro-gestao">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Novo Acesso</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="quickForm" action="{{route('admin.sistemas.store')}}" method="post">
+                                                        @csrf
+                                                        <div class="container-fluid">
+                                                            <!-- left column -->
+                                                            <div class="col-md-12">
+                                                                <!-- general form elements -->
+                                                                <div class="row">
+                                                                    <div class="form-group col-6">
+                                                                        <label for="descricao">Descrição</label>
+                                                                        <input type="text" class="form-control" id="descricao" name="descricao">
+                                                                    </div>
+                                                                    <div class="form-group col-6">
+                                                                        <label for="link">Link</label>
+                                                                        <input type="text" class="form-control" id="link" name="link">
+                                                                    </div>
+                                                                    <div class="form-group col-6">
+                                                                        <label for="usuario">Usuário</label>
+                                                                        <input type="text" class="form-control" id="usuario" name="usuario">
+                                                                    </div>
+                                                                    <div class="form-group col-6">
+                                                                        <label for="senha">Senha</label>
+                                                                        <input type="text" class="form-control" id="senha" name="senha">
+                                                                    </div>
+                                                                    <div class="form-group col-12">
+                                                                        <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @include('admin.ti.gestao_sistemas._parts.modals.detalhes')
+
                                     </tbody>
                                     <tfoot>
                                     <tr>
@@ -140,7 +169,6 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-        </section>
         <!-- /.content -->
     </div>
 
@@ -163,11 +191,11 @@
 
     {{--Modal--}}
     <script src="{{url('assets.admin/plugins/jquery/jquery.min.js')}}"></script>
-    <script src="{{url('assets.admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{url('assets.admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-    <script src="{{url('assets.admin/plugins/toastr/toastr.min.js')}}"></script>
-    <script src="{{url('assets.admin/dist/js/adminlte.min.js?v=3.2.0')}}"></script>
-    <script src="{{url('assets.admin/dist/js/demo.js')}}"></script>
+    <script src="{{url('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url('assets/admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{url('assets/admin/plugins/toastr/toastr.min.js')}}"></script>
+    <script src="{{url('assets/admin/dist/js/adminlte.min.js?v=3.2.0')}}"></script>
+    <script src="{{url('assets/admin/dist/js/demo.js')}}"></script>
 
     <script>
         $(function () {
@@ -183,6 +211,76 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+            });
+        });
+    </script>
+
+    <!-- jquery-validation -->
+    <script src="{{url('assets/admin/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{url('assets/admin/plugins/jquery-validation/additional-methods.min.js')}}"></script>
+    <script>
+        $(function () {
+            // $.validator.setDefaults({
+            //     submitHandler: function () {
+            //         alert( "Cadastro Efetuado com Sucesso!" );
+            //     }
+            // });
+            $('#quickForm').validate({
+                rules: {
+                    descricao: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 90
+                    },
+                    link: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 90
+                    },
+                    usuario: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 90
+                    },
+                    senha: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 50
+                    },
+                },
+                messages: {
+                    descricao: {
+                        required: "Campo Obrigatorio",
+                        minlength: "Quantidade minima de 3.",
+                        maxlength: "Quantidade maxima de 90"
+                    },
+                    link: {
+                        required: "Campo Obrigatorio",
+                        minlength: "Quantidade minima de 3.",
+                        maxlength: "Quantidade maxima de 90"
+                    },
+                    usuario: {
+                        required: "Campo Obrigatorio",
+                        minlength: "Quantidade minima de 3.",
+                        maxlength: "Quantidade maxima de 90"
+                    },
+                    senha: {
+                        required: "Campo Obrigatorio",
+                        minlength: "Quantidade minima de 3.",
+                        maxlength: "Quantidade maxima de 50"
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
             });
         });
     </script>
