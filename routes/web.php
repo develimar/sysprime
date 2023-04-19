@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\Ti\{
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.index');
 });
 
 //Route::get('/admin',[\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.index');
